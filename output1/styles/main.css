@@ -1,0 +1,166 @@
+:root {
+  --outline-color: #335c81;
+  --blue-box: #4f81bd;
+  --yellow-box: #ffff00;
+  --aqua-box: #205867;
+  --red-box: #ff0000;
+  --cyan-box: #93b3d7;
+  --peach-box: #fabf8e;
+}
+
+html,
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+  outline: 3px var(--outline-color) solid;
+  outline-offset: -2px;
+}
+
+/* View 1 Styling */
+
+.container-view-1 {
+  display: grid;
+  grid-template-columns: repeat(2, 300px);
+  grid-template-rows: 200px 400px;
+}
+
+.container-view-1 > .item-1 {
+  background-color: var(--blue-box);
+}
+
+.container-view-1 > .item-2 {
+  background-color: var(--yellow-box);
+}
+
+.container-view-1 > .item-3 {
+  background-color: var(--aqua-box);
+  grid-area: 2 / 1 / 2 / 3;
+}
+
+/* End of View 1 Styling */
+
+/* View 2 Styling */
+
+.container-view-2 {
+  display: grid;
+  grid-template-columns: 600px;
+  grid-template-rows: 200px 200px 300px;
+}
+
+.container-view-2 > .item-1 {
+  background-color: var(--blue-box);
+}
+
+.container-view-2 > .item-2 {
+  background-color: var(--yellow-box);
+}
+
+.container-view-2 > .item-3 {
+  background-color: var(--aqua-box);
+}
+
+/* End of View 2 Styling */
+
+/* View 3 Styling */
+
+.container-view-3 {
+  display: grid;
+  grid-template-columns: repeat(2, 300px);
+  grid-template-rows: 200px 200px 150px;
+}
+
+.container-view-3 > .item-1 {
+  background-color: var(--blue-box);
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.container-view-3 > .item-2 {
+  background-color: var(--yellow-box);
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.container-view-3 > .item-3 {
+  background-color: var(--aqua-box);
+  grid-area: 3 / 1 / 3 / 3;
+}
+
+/* End of View 3 Styling */
+
+/* View 4 Styling */
+
+.container-view-4 {
+  display: grid;
+  grid-template-columns: 350px 250px;
+  grid-template-rows: 200px 450px;
+}
+
+.container-view-4 > .item-1 {
+  background-color: var(--blue-box);
+  grid-area: 1 / 1 / 2 / 3;
+}
+
+.container-view-4 > .item-2 {
+  background-color: var(--yellow-box);
+  grid-area: 2 / 2 / 2 / 3;
+}
+
+.container-view-4 > .item-3 {
+  background-color: var(--aqua-box);
+  grid-area: 2 / 1 / 2 / 2;
+}
+
+/* End of View 4 Styling */
+
+/* View 5 Styling */
+
+.container-view-5 {
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  grid-template-rows: repeat(3, 200px);
+  row-gap: 15px;
+  column-gap: 20px;
+}
+
+.container-view-5 > .item-1 {
+  background-color: var(--blue-box);
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.container-view-5 > .item-2 {
+  background-color: var(--yellow-box);
+  grid-area: 1 / 3 / 2 / 4;
+}
+
+.container-view-5 > .item-3 {
+  background-color: var(--aqua-box);
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.container-view-5 > .item-4 {
+  background-color: var(--red-box);
+  grid-area: 2 / 1 / 3 / 4;
+}
+
+.container-view-5 > .subcontainer {
+  display: flex;
+  grid-area: 3 / 1 / 4 / 4;
+}
+
+.container-view-5 > .subcontainer > .item-5,
+.container-view-5 > .subcontainer > .item-6 {
+  flex: 1;
+}
+
+.container-view-5 > .subcontainer > .item-5 {
+  background-color: var(--cyan-box);
+}
+
+.container-view-5 > .subcontainer > .item-6 {
+  background-color: var(--peach-box);
+}
+
+/* End of View 5 Styling */
