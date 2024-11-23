@@ -1,0 +1,83 @@
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+
+/* ==================
+   Colors
+   ================== */
+
+// Pokeball Colors
+$pb-gray: #f0f0f0;
+$pb-darkblue: #222224;
+$pb-brightred: #f00000;
+$pb-red: #ee1515;
+
+// Gradients
+$gradient-to-top: linear-gradient(to top, $pb-darkblue, $pb-brightred);
+//Background colors
+$body-bg: $pb-brightred;
+
+// Foreground colors
+$body-fg: $pb-gray;
+
+/* ==================
+   Font Weights
+   ================== */
+$font-weight-light: 400;
+$font-weight-normal: 500;
+$font-weight-medium: 600;
+$font-weight-semibold: 700;
+$font-weight-bold: 800;
+
+/* ==================
+   Font Sizes
+   ================== */
+$font-xs: 0.75rem; // 12px
+$font-sm: 0.875rem; // 14px
+$font-base: 1rem; // 16px
+$font-lg: 1.125rem; // 18px
+$font-xl: 1.25rem; // 20px
+$font-2xl: 1.5rem; // 24px
+$font-3xl: 1.875rem; // 30px
+$font-4xl: 2.25rem; // 36px
+$font-5xl: 3rem; // 48px
+$font-6xl: 3.7rem; // 60px
+$font-7xl: 4.5rem; // 72px
+$font-8xl: 6rem; // 96px
+$font-9xl: 8rem; // 128px
+
+/* ==========================================================================
+   Mixins
+   ========================================================================== */
+
+/* ==================
+   Transition Mixin
+   ================== */
+
+// Mixin to create smooth transitions for a property
+@mixin transition($property, $duration, $timing-function: ease) {
+  transition: $property $duration $timing-function;
+  -webkit-transition: $property $duration $timing-function; // For Safari
+  -moz-transition: $property $duration $timing-function; // For Firefox
+}
+
+/* ==================
+   Breakpoint Mixin
+   ================== */
+
+// Mixin for responsive breakpoints (small, medium, large)
+@mixin breakpoint($size) {
+  @if $size == small {
+    @media (min-width: 320px) and (max-width: 600px) {
+      @content;
+    }
+  } @else if $size == medium {
+    @media (min-width: 601px) and (max-width: 1024px) {
+      @content;
+    }
+  } @else if $size == large {
+    @media (min-width: 1025px) {
+      @content;
+    }
+  }
+}

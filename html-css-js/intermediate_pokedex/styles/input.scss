@@ -1,0 +1,25 @@
+@use "utilities" as util;
+@use "base" as base;
+@use "components" as components;
+
+.resp {
+  display: none;
+
+  &-phone {
+    @include util.breakpoint(small) {
+      display: block;
+    }
+  }
+
+  &-tablet {
+    @include util.breakpoint(medium) {
+      display: block;
+    }
+  }
+
+  &-desktop {
+    @include util.breakpoint(large) {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@use "../utilities" as util;
+
+#search-pokemon {
+  display: flex;
+
+  #pokemon-container {
+    display: flex;
+  }
+}

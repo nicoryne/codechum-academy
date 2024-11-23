@@ -1,0 +1,9 @@
+@use "../utilities" as util;
+
+#about {
+  flex-direction: column;
+
+  p {
+    width: 20vw;
+  }
+}

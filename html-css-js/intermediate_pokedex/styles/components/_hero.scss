@@ -1,0 +1,20 @@
+@use "../utilities" as util;
+
+#hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  text-align: center;
+  gap: 4rem;
+
+  margin-top: 10vh;
+  padding: 2rem;
+
+  .hero-images {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+  }
+}

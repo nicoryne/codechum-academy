@@ -1,0 +1,98 @@
+@use "../utilities" as util;
+
+$header-height: 6rem;
+
+#site-header {
+  position: fixed;
+  inset: 0;
+  top: 0;
+  left: 0;
+
+  height: $header-height;
+
+  background-color: util.$pb-darkblue;
+
+  .wrapper {
+    height: 100%;
+
+    display: flex;
+    place-items: center;
+    justify-content: space-between;
+
+    margin: 0 auto;
+    padding-inline: 2rem;
+
+    @include util.breakpoint(large) {
+      max-width: 80vw;
+    }
+  }
+
+  nav {
+    @include util.breakpoint(small) {
+      display: none;
+      position: fixed;
+      top: $header-height;
+      left: 0;
+
+      width: 100vw;
+      height: 100vh;
+
+      background-color: util.$pb-darkblue;
+    }
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+
+    @include util.breakpoint(small) {
+      display: flex;
+      flex-direction: column;
+      place-items: center;
+
+      padding: util.$font-3xl;
+      gap: util.$font-4xl;
+    }
+
+    @include util.breakpoint(medium) {
+      gap: 1rem;
+    }
+
+    @include util.breakpoint(large) {
+      gap: 2rem;
+    }
+  }
+
+  a {
+    display: flex;
+    place-items: center;
+
+    color: util.$pb-gray;
+    font-weight: util.$font-weight-bold;
+    text-decoration: none;
+  }
+
+  li > a {
+    @include util.transition(all, 0.4s, ease);
+
+    &:hover {
+      color: util.$pb-brightred;
+      text-decoration: underline;
+    }
+
+    @include util.breakpoint(small) {
+      font-size: util.$font-4xl;
+    }
+  }
+
+  button {
+    background: none;
+    border: none;
+
+    svg {
+      width: util.$font-4xl;
+      height: auto;
+      color: util.$pb-gray;
+    }
+  }
+}

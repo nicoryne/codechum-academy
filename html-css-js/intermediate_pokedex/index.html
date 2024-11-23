@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="description"
+      content="Discover the world of Pokémon with our Pokedex! Explore detailed information about every Pokémon, including their abilities, types, stats, and evolutions."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="/styles/dist/output.css" />
+
+    <script src="/components/index.js" type="module" defer></script>
+    <script src="/services/pokemon.js" type="text/javascript" defer></script>
+    <script src="/scripts/index.js" type="text/javascript" defer></script>
+    <title>Pokédex</title>
+  </head>
+  <body>
+    <site-header></site-header>
+
+    <main>
+      <section id="hero">
+        <header>
+          <h1>Welcome to World of Pokemon</h1>
+        </header>
+        <div class="hero-images">
+          <img src="/public/icons/lighting.svg" alt="Lighting Vector" width="256" height="auto" />
+          <img src="/public/images/pokeball-red.webp" alt="Pokeball Image" width="512" height="auto" />
+        </div>
+      </section>
+      <section id="search-pokemon">
+        <header>
+          <h1>Search Pokemon</h1>
+        </header>
+
+        <aside>
+          <input type="text" id="search-pokemon" name="search-pokemon" placeholder="Search Pokemon" />
+        </aside>
+
+        <div id="pokemon-container">
+          <pokemon-card></pokemon-card>
+        </div>
+      </section>
+      <section id="about">
+        <header>
+          <h2>About Pokédex</h2>
+        </header>
+        <p>
+          Welcome to the Pokédex, your go-to guide for discovering Pokémon! Explore detailed info on species, abilities,
+          evolutions, and habitats, all in one easy-to-use platform. Whether you’re a seasoned trainer or a newcomer,
+          we’re here to make your Pokémon journey unforgettable. Catch 'em all with us!
+        </p>
+      </section>
+
+      <section id="contact">
+        <header>
+          <h1>Contact Us</h1>
+        </header>
+      </section>
+    </main>
+
+    <site-footer></site-footer>
+  </body>
+</html>
