@@ -206,6 +206,24 @@ p {
   width: 20vw;
 }
 
+#search-pkmn {
+  display: flex;
+  flex-direction: column;
+}
+#search-pkmn #pkmn-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-height: 100%;
+}
+#search-pkmn pokemon-card {
+  width: 30%;
+  flex: 1;
+}
+#search-pkmn .pkmn-card {
+  width: 100%;
+  border-radius: 12px;
+}
+
 .resp {
   display: none;
 }

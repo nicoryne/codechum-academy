@@ -1,9 +1,24 @@
 @use "../utilities" as util;
 
-#search-pokemon {
+#search-pkmn {
   display: flex;
+  flex-direction: column;
 
-  #pokemon-container {
-    display: flex;
+  #pkmn-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    max-height: 100%;
+      
   }
+
+  pokemon-card {
+    width: 30%;
+    flex: 1;
+  }
+
+  .pkmn-card {
+    width: 100%;
+    border-radius: 12px;
+  }
+ 
 }
