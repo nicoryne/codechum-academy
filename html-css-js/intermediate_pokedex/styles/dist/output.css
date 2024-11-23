@@ -40,6 +40,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
 }
 
 html {
@@ -48,7 +51,7 @@ html {
 }
 
 body {
-  background: #f00000;
+  background: #222224;
   color: #f0f0f0;
   font-family: "Mulish", serif;
   font-size: 10px;
@@ -71,16 +74,11 @@ main {
 }
 
 section {
-  height: 100vh;
   padding: 6rem;
 }
 
-section:nth-child(even) {
-  background: #222224;
-}
-
-section:last-child {
-  min-height: 50vh;
+section:first-child {
+  background: #f00000;
 }
 
 h1 {
@@ -159,11 +157,6 @@ p {
   font-weight: 800;
   text-decoration: none;
 }
-#site-header li > a {
-  transition: all 0.4s ease;
-  -webkit-transition: all 0.4s ease;
-  -moz-transition: all 0.4s ease;
-}
 #site-header li > a:hover {
   color: #f00000;
   text-decoration: underline;
@@ -214,6 +207,7 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   max-height: 100%;
+  overflow-y: scroll;
 }
 #search-pkmn pokemon-card {
   width: 30%;

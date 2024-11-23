@@ -15,11 +15,10 @@ export default class Header extends HTMLElement {
                   <h1>Pokédex</h1>
                 </a>
                 <nav id="header-nav">
-                <ul>
+                 <ul>
                   <li><a href="#hero">Home</a></li>
                   <li><a href="#about">About</a></li>
                   <li><a href="#search-pokemon">Search Pokemon</a></li>
-                  <li><a href="#contact">Contact</a></li>
                 </ul>
                </nav>
 

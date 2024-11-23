@@ -22,6 +22,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  @include util.transition(all, 0.4s, ease);
 }
 
 html {
@@ -53,16 +54,11 @@ main {
 }
 
 section {
-  height: 100vh;
   padding: 6rem;
 }
 
-section:nth-child(even) {
-  background: util.$pb-darkblue;
-}
-
-section:last-child {
-  min-height: 50vh;
+section:first-child {
+  background: util.$pb-brightred;
 }
 
 h1 {

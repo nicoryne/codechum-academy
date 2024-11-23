@@ -10,7 +10,7 @@ export default class PokemonCard extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === "pokemon" && oldValue != newValue) {
-      this.pokemonData = JSON.parse(newValue);      
+      this.pokemonData = JSON.parse(newValue);
       this.render();
     }
   }

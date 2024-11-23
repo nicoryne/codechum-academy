@@ -73,8 +73,6 @@ $header-height: 6rem;
   }
 
   li > a {
-    @include util.transition(all, 0.4s, ease);
-
     &:hover {
       color: util.$pb-brightred;
       text-decoration: underline;

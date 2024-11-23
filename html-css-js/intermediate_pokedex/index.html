@@ -23,9 +23,12 @@
     <title>Pokédex</title>
   </head>
   <body>
+    <!-- Site Header -->
     <site-header></site-header>
 
+    <!-- Main Content -->
     <main>
+      <!-- Hero Section -->
       <section id="hero">
         <header>
           <h1>Welcome to World of Pokemon</h1>
@@ -35,23 +38,8 @@
           <img src="/public/images/pokeball-red.webp" alt="Pokeball Image" width="512" height="auto" />
         </div>
       </section>
-      <section id="search-pkmn">
-        <header>
-          <h1>Search Pokemon</h1>
-        </header>
 
-        <aside>
-          <input type="text" id="search-pokemon" name="search-pokemon" placeholder="Search Pokemon" />
-          <div id="pkmn-pagination">
-            <a href="#">&laquo;</a>
-            <a href="#">&laquo;</a>
-          </div>
-        </aside>
-
-        <div id="pkmn-container">
-
-        </div>
-      </section>
+      <!-- About Section -->
       <section id="about">
         <header>
           <h2>About Pokédex</h2>
@@ -63,13 +51,37 @@
         </p>
       </section>
 
-      <section id="contact">
+      <!-- Search Pokemon Section -->
+      <section id="search-pkmn">
         <header>
-          <h1>Contact Us</h1>
+          <h1>Search Pokemon</h1>
         </header>
+
+        <aside class="search-panel">
+          <div class="search-input-group">
+            <input
+              type="text"
+              id="search-pokemon"
+              name="search-pokemon"
+              placeholder="Search Pokémon by name"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="filters">
+            <select id="filter-type" name="filter-type">
+              <!-- Dynamically adding filters through scripts -->
+              <option value="">Filter by Type</option>
+            </select>
+          </div>
+        </aside>
+
+        <!-- Dynamically adding pokemon through scripts -->
+        <div id="pkmn-container"></div>
       </section>
     </main>
 
+    <!-- Site Footer -->
     <site-footer></site-footer>
   </body>
 </html>

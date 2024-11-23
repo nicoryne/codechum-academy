@@ -8,7 +8,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     max-height: 100%;
-      
+    overflow-y: scroll;
   }
 
   pokemon-card {
@@ -20,5 +20,4 @@
     width: 100%;
     border-radius: 12px;
   }
- 
 }
