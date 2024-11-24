@@ -1,26 +1,67 @@
+/* ==========================================================================
+   Pokemon UI-related Scripts
+   ========================================================================== */
+
 /* ==================
-   Pokemon UI Scripts
+   Constant Variables
    ================== */
+
+// Number of Pokémon shown per page
+const MAX_POKEMON_PER_PAGE = 6;
+
+// Types that are in the API but aren't in the game
+const UNUSED_TYPES = ["stellar", "unknown"];
+
+/* ==================
+   Rendering Functions
+   ================== */
+
+/**
+ * Filters Pokémon by name and type
+ * @param {Array} allPokemon - Complete Pokémon list
+ * @param {string} searchInput - Search query from the user
+ * @param {string} selectedType - Selected Pokémon type
+ * @returns {Array} - Filtered Pokémon list
+ */
+const filterPokemon = (allPokemon, searchInput, selectedType) => {
+  let filtered = allPokemon;
+
+  // Filter by name
+  if (searchInput) {
+    filtered = filtered.filter((pokemon) => pokemon.name.toLowerCase().includes(searchInput.toLowerCase()));
+  }
+
+  // Filter by type
+  if (selectedType && selectedType !== "all") {
+    filtered = filtered.filter((pokemon) => pokemon.types.some((type) => type.toLowerCase() === selectedType));
+  }
+
+  return filtered;
+};
 
 /**
  * Renders a subset of Pokémon into the container
  * @param {Array} pokemonSubset - The Pokémon to render
  */
-export const renderPokemonSubset = (pokemonSubset) => {
+const renderPokemonSubset = (pokemonSubset) => {
   const container = document.getElementById("pkmn-container");
 
-  // Clear existing Pokémon cards in the container
-  container.innerHTML = "";
-
-  // Checks if pokemonSubset is empty then sets appropriate
-  // text for container HTML
-  if (pokemonSubset.length === 0) {
-    container.innerHTML = "No pokemon found!";
+  // Validate container existence
+  if (!container) {
+    console.error("Pokemon container not found.");
     return;
   }
 
-  // Create and append a card for each Pokémon
-  pokemonSubset.forEach((pokemon) => {
+  container.innerHTML = "";
+
+  // Display a message if no Pokémon match the filters
+  if (pokemonSubset.length === 0) {
+    container.textContent = "No Pokémon found!";
+    return;
+  }
+
+  // Limit the Pokémon shown per page
+  pokemonSubset.slice(0, MAX_POKEMON_PER_PAGE).forEach((pokemon) => {
     const card = document.createElement("pokemon-card");
     card.setAttribute("pokemon", JSON.stringify(pokemon));
     container.appendChild(card);
@@ -29,70 +70,121 @@ export const renderPokemonSubset = (pokemonSubset) => {
 
 /**
  * Populates the type filter dropdown with available Pokémon types
- * @param {Array} allTypes - Complete Pokemon Type List
+ * @param {Array} allTypes - Complete Pokémon type list
  */
 export const initFilterType = (allTypes) => {
   const selectFilter = document.getElementById("filter-type");
 
-  // Add an option for each Pokémon type, skipping unused ones
+  if (!selectFilter) {
+    console.error("Filter type dropdown not found.");
+    return;
+  }
+
   allTypes.forEach((type) => {
     const name = type.name;
 
-    // Skipping types that aren't really in the game
-    // but are in the API
-    if (name === "stellar" || name === "unknown") {
-      return;
-    }
+    // Skip unused or invalid types
+    if (UNUSED_TYPES.includes(name)) return;
 
-    // Create an option element for the type
     const typeOption = document.createElement("option");
-    typeOption.setAttribute("value", name);
-
-    // Capitalizes names since they return as lowercase
+    typeOption.value = name;
     typeOption.textContent = name.charAt(0).toUpperCase() + name.slice(1);
     selectFilter.append(typeOption);
   });
 };
 
 /**
- * Applies filters based on search input and selected type
- * @param {Array} allPokemon - Complete Pokemon list
+ * Applies filters and updates the rendered Pokémon
+ * @param {Array} allPokemon - Complete Pokémon list
+ * @param {int} pageNumber - Page number for pagination
  */
-const applyFilters = (allPokemon) => {
-  const searchInput = document.getElementById("search-pokemon").value.toLowerCase();
-  const selectedType = document.getElementById("filter-type").value;
+const applyFilters = (allPokemon, pageNumber) => {
+  const searchInput = document.getElementById("search-pokemon")?.value || "";
+  const selectedType = document.getElementById("filter-type")?.value || "all";
 
-  let filteredPokemon = allPokemon;
+  // Apply filters
+  const filteredPokemon = filterPokemon(allPokemon, searchInput, selectedType);
 
-  // Filter Pokémon by name if search input is provided
-  if (searchInput) {
-    // Make names lowercase again to match data in API
-    filteredPokemon = filteredPokemon.filter((pokemon) => pokemon.name.toLowerCase().includes(searchInput));
-  }
+  // Calculate total pages and current subset
+  const totalPokemonCount = filteredPokemon.length;
+  const startIndex = (pageNumber - 1) * MAX_POKEMON_PER_PAGE;
+  const endIndex = startIndex + MAX_POKEMON_PER_PAGE;
 
-  // Further filter Pokémon by selected type if applicable
-  if (selectedType && selectedType !== "all") {
-    // Similar to names, make types lowercase again to match data in API
-    filteredPokemon = filteredPokemon.filter((pokemon) =>
-      pokemon.types.some((type) => type.toLowerCase() === selectedType)
-    );
-  }
+  // Render Pokémon
+  renderPokemonSubset(filteredPokemon.slice(startIndex, endIndex));
 
-  // Render the filtered Pokémon
-  renderPokemonSubset(filteredPokemon);
+  return totalPokemonCount;
 };
 
 /**
- * Sets up event listeners for search input and type filter dropdown
- * @param {Array} allPokemon - Complete Pokemon list
+ * Sets up event listeners for search input, type filter, and pagination buttons
+ * @param {Array} allPokemon - Complete Pokémon list
  */
 export const initFilters = (allPokemon) => {
   const searchField = document.getElementById("search-pokemon");
   const typeDropdown = document.getElementById("filter-type");
+  const firstPageBtn = document.getElementById("btn-first");
+  const prevPageBtn = document.getElementById("btn-prev");
+  const nextPageBtn = document.getElementById("btn-next");
+  const lastPageBtn = document.getElementById("btn-last");
 
-  // Trigger filtering when search input changes
-  searchField.addEventListener("input", applyFilters(allPokemon));
+  if (!searchField || !typeDropdown || !firstPageBtn || !prevPageBtn || !nextPageBtn || !lastPageBtn) {
+    console.error("One or more filter elements are missing.");
+    return;
+  }
 
-  // Trigger filtering when type selection changes
-  typeDropdown.addEventListener("change", applyFilters(allPokemon));
+  let pageNumber = 1;
+  let totalPages = 1;
+
+  // Debounce helper for input events to prevent excessive filtering
+  // calls as the user types
+  const debounce = (fn, delay) => {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn(...args), delay);
+    };
+  };
+
+  const updateFilters = debounce(() => {
+    pageNumber = 1;
+    const totalPokemonCount = applyFilters(allPokemon, pageNumber);
+
+    // Using Math.ceil here to ensure we are not skipping the last page
+    // if the total count is not a multiple of the maximum Pokemon per page
+    totalPages = Math.ceil(totalPokemonCount / MAX_POKEMON_PER_PAGE);
+  }, 300);
+
+  // Attach event listeners
+  searchField.addEventListener("input", updateFilters);
+  typeDropdown.addEventListener("change", updateFilters);
+
+  firstPageBtn.addEventListener("click", () => {
+    pageNumber = 1;
+    applyFilters(allPokemon, pageNumber);
+  });
+
+  prevPageBtn.addEventListener("click", () => {
+    if (pageNumber > 1) {
+      pageNumber--;
+      applyFilters(allPokemon, pageNumber);
+    }
+  });
+
+  nextPageBtn.addEventListener("click", () => {
+    if (pageNumber < totalPages) {
+      pageNumber++;
+      applyFilters(allPokemon, pageNumber);
+    }
+  });
+
+  lastPageBtn.addEventListener("click", () => {
+    // Sets page number to the last available page
+    pageNumber = totalPages;
+    applyFilters(allPokemon, pageNumber);
+  });
+
+  // Initial render
+  const initialPokemonCount = applyFilters(allPokemon, pageNumber);
+  totalPages = Math.ceil(initialPokemonCount / MAX_POKEMON_PER_PAGE);
 };

@@ -1,27 +1,41 @@
 import { fetchPokemonDataList, fetchPokemonTypes } from "./services/pokemon.js";
 import { initHamburgerButton } from "./mobile.js";
-import { initFilterType, initFilters, renderPokemonSubset } from "./pokemonUi.js";
+import { initFilterType, initFilters } from "./pokemonUi.js";
+
+/* ==========================================================================
+   Script Module
+   ========================================================================== */
 
 /* ==================
-   DOM Loaded Scripts
+   Initialization
    ================== */
 
 /**
  * Waits for the document to be fully loaded and initializes functions
- * for responsiveness and Pokémon rendering
+ * for responsiveness and Pokémon rendering.
  */
-document.addEventListener("DOMContentLoaded", async (e) => {
-  // Preloads all existing Pokemon from the PokeAPI (1,025 Pokemons available as of 11/24/2024)
-  let allPokemon = await fetchPokemonDataList(1, 1025);
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    /**
+     * Preload all existing Pokémon from the PokeAPI
+     *
+     * Hardcoded value because there are only 1025 official Pokemon as of 11/24/2024
+     * but PokeAPI has a higher count but will retrieve an error if we were to fetch from
+     * a Pokemon ID higher than 1025
+     */
+    const totalPokemonCount = 1025;
 
-  // Preloads all Pokemon types from the PokeAPI
-  let allTypes = await fetchPokemonTypes();
+    // Fetch Pokémon data and types
+    const allPokemon = await fetchPokemonDataList(1, totalPokemonCount);
+    const allTypes = await fetchPokemonTypes();
 
-  // Initialize the hamburger menu button
-  initHamburgerButton();
+    // Initialize the hamburger menu button
+    initHamburgerButton();
 
-  // Initialize type filter and event listeners, then render all Pokémon
-  initFilterType(allTypes);
-  initFilters(allPokemon);
-  renderPokemonSubset(allPokemon);
+    // Set up filters and Pokémon rendering
+    initFilterType(allTypes);
+    initFilters(allPokemon);
+  } catch (error) {
+    console.error("Error initializing the Pokémon app:", error);
+  }
 });

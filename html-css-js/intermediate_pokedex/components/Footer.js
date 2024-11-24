@@ -45,8 +45,7 @@ export default class Footer extends HTMLElement {
                   <li><a href="#search-pokemon">Search Pokemon</a></li>
                  </ul>
                 </nav>
-
-                <small>&copy; 2024 CESAFI Esports League. All Rights Reserved.</small>
+                <small>&copy; 2024 Pokédex. All Rights Reserved.</small>
             </div>
         </footer>
     `;

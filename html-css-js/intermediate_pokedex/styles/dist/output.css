@@ -69,8 +69,6 @@ body {
 
 main {
   height: 100vh;
-  overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 section {
@@ -200,14 +198,28 @@ p {
 }
 
 #search-pkmn {
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+#search-pkmn #contr-panel {
+  display: flex;
+  width: 100%;
+}
+#search-pkmn #contr-panel .search-input-group {
+  width: 100%;
+  flex: 1;
+}
+#search-pkmn #contr-panel #search-pokemon {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 14px;
 }
 #search-pkmn #pkmn-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  max-height: 100%;
-  overflow-y: scroll;
+  grid-template-columns: repeat(3, 1fr);
 }
 #search-pkmn pokemon-card {
   width: 30%;
@@ -216,6 +228,17 @@ p {
 #search-pkmn .pkmn-card {
   width: 100%;
   border-radius: 12px;
+}
+
+#site-footer {
+  display: flex;
+}
+#site-footer .social-icon {
+  width: 24px;
+  height: auto;
+}
+#site-footer .social-icon:hover {
+  color: #f00000;
 }
 
 .resp {
