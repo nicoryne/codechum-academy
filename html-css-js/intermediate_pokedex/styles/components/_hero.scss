@@ -1,6 +1,12 @@
 @use "../utilities" as util;
 
 #hero {
+  /**
+   * Main Hero Section Styling
+   * - Flexbox for center alignment
+   * - Stacks content vertically in the center of the page
+   * - Includes spacing between elements and responsive padding
+   */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,9 +15,15 @@
   text-align: center;
   gap: 4rem;
 
-  margin-top: 10vh;
+  margin-top: 6vh;
   padding: 2rem;
 
+  /**
+   * Hero Images Styling
+   * - Flexbox layout for arranging images
+   * - Uses `place-items` for centralized alignment in both axes
+   * - Designed to stack images vertically by default
+   */
   .hero-images {
     display: flex;
     flex-direction: column;

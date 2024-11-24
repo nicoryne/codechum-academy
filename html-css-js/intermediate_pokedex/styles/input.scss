@@ -1,23 +1,26 @@
-@use "utilities" as util;
-@use "base" as base;
-@use "components" as components;
+@use "utilities" as util; // Utility mixins and variables
+@use "base" as base; // Base styles for the project
+@use "components" as components; // Component-specific styles
 
 .resp {
   display: none;
 
   &-phone {
+    // Show only on small screens (phones)
     @include util.breakpoint(small) {
       display: block;
     }
   }
 
   &-tablet {
+    // Show only on medium screens (tablets)
     @include util.breakpoint(medium) {
       display: block;
     }
   }
 
   &-desktop {
+    // Show only on large screens (desktops)
     @include util.breakpoint(large) {
       display: block;
     }

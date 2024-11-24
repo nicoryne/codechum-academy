@@ -1,0 +1,84 @@
+@use "../utilities" as util;
+
+.pokemon-card {
+  /**
+   * Pokémon Card Styling
+   * - Centers the card horizontally and defines its overall appearance
+   * - Adds a border with a custom dark blue color and rounded corners
+   * - Includes padding for inner spacing and sets a maximum width
+   * - Applies a box shadow to create depth and interactivity on hover
+   */
+  margin: 0 auto;
+  border: 2px solid util.$pb-darkblue;
+  border-radius: 16px;
+  color: util.$body-fg;
+  padding: 16px;
+  max-width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds a shadow effect for depth */
+  text-align: center;
+
+  &:hover {
+    /**
+     * Hover Effect
+     * - Scales the card slightly and moves it upward on hover to create an interactive feel
+     */
+    transform: translateY(-5px) scale(1.03); /* Applies a slight movement and scaling effect */
+  }
+}
+
+.card-header {
+  /**
+   * Header Styling
+   * - Flexbox layout for aligning content horizontally
+   * - Adds space between the Pokémon name and ID
+   * - Aligns all elements vertically in the center
+   */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .pokemon-name {
+    /**
+     * Pokémon Name Styling
+     * - Makes the name bold for emphasis
+     */
+    font-weight: util.$font-weight-bold;
+  }
+
+  .pokemon-id {
+    /**
+     * Pokémon ID Styling
+     * - Sets a small font size for the Pokémon ID
+     * - Uses a gray color for subtle emphasis
+     */
+    font-size: util.$font-sm;
+    color: util.$pb-gray;
+  }
+}
+
+.pokemon-image {
+  /**
+   * Image Styling
+   * - Makes the image fill the width of the card while maintaining its aspect ratio
+   * - Adds rounded corners for a soft appearance
+   * - Adds margin to provide spacing around the image
+   */
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 12px 0;
+}
+
+.card-details {
+  /**
+   * Card Details Styling
+   * - Adds a background color and rounded corners for the details section
+   * - Provides an inset shadow for a "pressed" effect
+   * - Adds padding for inner spacing
+   */
+  background: util.$pb-darkblue;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3); /* Applies an inset shadow for depth */
+}

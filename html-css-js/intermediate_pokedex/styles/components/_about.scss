@@ -1,9 +1,50 @@
 @use "../utilities" as util;
 
-#about {
-  flex-direction: column;
+.about-section {
+  /**
+   * About Section Styling
+   * - Adds border radius and shadow for a card-like appearance
+   * - Centers content and applies text color and font family
+   */
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  text-align: center;
+  color: util.$pb-gray;
 
-  p {
-    width: 20vw;
+  &:hover {
+    /**
+     * Hover Effect
+     * - Increases shadow intensity for visual emphasis on hover
+     */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .about-header h2 {
+    /**
+     * About Header Styling
+     * - Sets color and margin for header
+     */
+    margin-bottom: 16px;
+    color: util.$pb-gray;
+  }
+
+  .about-description {
+    /**
+     * About Description Styling
+     * - Sets line height, and margin for readability
+     * - Responsively adjusts width based on breakpoints
+     */
+    line-height: 1.6;
+    margin: 0 auto;
+    width: 100%;
+
+    @include util.breakpoint(medium) {
+      width: 80%; // Adjust width on medium screens
+    }
+
+    @include util.breakpoint(large) {
+      width: 40%; // Adjust width on large screens
+    }
   }
 }

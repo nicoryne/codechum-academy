@@ -7,7 +7,7 @@
    ================== */
 
 // Number of Pokémon shown per page
-const MAX_POKEMON_PER_PAGE = 6;
+const MAX_POKEMON_PER_PAGE = 8;
 
 // Types that are in the API but aren't in the game
 const UNUSED_TYPES = ["stellar", "unknown"];

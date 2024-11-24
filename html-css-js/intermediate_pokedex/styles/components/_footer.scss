@@ -1,13 +1,104 @@
 @use "../utilities" as util;
 
 #site-footer {
-  display: flex;
-  .social-icon {
-    width: 24px;
-    height: auto;
+  /**
+   * Footer Styling
+   * - Dark blue background and light foreground color for readability
+   * - Center-aligned text with padding for spacing
+   */
+  background: util.$pb-darkblue;
+  color: util.$body-fg;
+  padding: 24px 0;
+  text-align: center;
 
-    &:hover {
-      color: util.$pb-brightred;
+  .wrapper {
+    /**
+     * Wrapper for Footer Content
+     * - Centers content and restricts width for large screens
+     */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  .social-links {
+    /**
+     * Social Links Section
+     * - Adds margin at the bottom and displays links horizontally
+     */
+    margin-bottom: 16px;
+
+    ul {
+      /**
+       * List Styling for Social Links
+       * - Uses flexbox for horizontal layout with gap between items
+       */
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+
+      li {
+        .social-link {
+          /**
+           * Social Link Styling
+           * - Circular icon containers with hover effect to change background color
+           */
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &:hover {
+            background: util.$pb-brightred;
+          }
+
+          .social-icon {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+    }
+  }
+
+  .footer-nav {
+    /**
+     * Footer Navigation Section
+     * - Adds margin at the bottom and displays links horizontally
+     */
+    margin-bottom: 16px;
+
+    ul {
+      /**
+       * List Styling for Footer Navigation Links
+       * - Uses flexbox for horizontal layout with gap between items
+       */
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    li {
+      a {
+        /**
+         * Navigation Link Styling
+         * - Sets text color and removes underline by default
+         */
+        color: util.$body-fg;
+        text-decoration: none;
+
+        &:hover {
+          /**
+           * Hover Effects for Links
+           * - Changes text color to bright red on hover
+           */
+          color: util.$pb-brightred;
+        }
+      }
     }
   }
 }

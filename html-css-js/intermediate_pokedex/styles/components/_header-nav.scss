@@ -3,24 +3,32 @@
 $header-height: 6rem;
 
 #site-header {
+  /**
+   * Sticky Header Styling
+   * - Fixed at the top of the viewport for persistent navigation
+   * - Occupies the full width and is vertically constrained to `$header-height`
+   * - Uses a dark blue background to distinguish the header
+   */
   position: fixed;
   inset: 0;
   top: 0;
   left: 0;
-
   height: $header-height;
-
   background-color: util.$pb-darkblue;
 
   .wrapper {
+    /**
+     * Wrapper for Header Content
+     * - Ensures all header elements are aligned and spaced properly
+     * - Uses `flexbox` for alignment and spacing between items
+     * - Adds horizontal padding and constrains the width at large breakpoints
+     */
     height: 100%;
-
     display: flex;
     place-items: center;
     justify-content: space-between;
 
     margin: 0 auto;
-    padding-inline: 2rem;
 
     @include util.breakpoint(large) {
       max-width: 80vw;
@@ -28,20 +36,29 @@ $header-height: 6rem;
   }
 
   nav {
+    /**
+     * Navigation Styling
+     * - Hidden on small screens by default
+     * - Positioned below the header when visible on small screens
+     * - Spans the full width with the same background color as the header
+     */
     @include util.breakpoint(small) {
-      display: none;
+      display: none; // set to none initially since we are using hamburger
       position: fixed;
       top: $header-height;
       left: 0;
-
       width: 100vw;
-      height: 100vh;
-
       background-color: util.$pb-darkblue;
     }
   }
 
   ul {
+    /**
+     * Navigation List Styling
+     * - Uses `flexbox` for horizontal alignment by default
+     * - Adapts to vertical alignment on smaller screens
+     * - Adds appropriate spacing between navigation items
+     */
     list-style: none;
     display: flex;
 
@@ -55,24 +72,33 @@ $header-height: 6rem;
     }
 
     @include util.breakpoint(medium) {
-      gap: 1rem;
+      gap: 1rem; // Reduced gap for medium screens
     }
 
     @include util.breakpoint(large) {
-      gap: 2rem;
+      gap: 2rem; // Increased gap for large screens
     }
   }
 
   a {
+    /**
+     * Navigation Links Styling
+     * - Centers link content and removes default text styles
+     * - Uses a bold font and default gray color
+     */
     display: flex;
     place-items: center;
-
     color: util.$pb-gray;
     font-weight: util.$font-weight-bold;
     text-decoration: none;
   }
 
   li > a {
+    /**
+     * Hover Effects for Links
+     * - Changes text color to bright red and underlines it
+     * - Increases font size for small screens
+     */
     &:hover {
       color: util.$pb-brightred;
       text-decoration: underline;
@@ -84,6 +110,11 @@ $header-height: 6rem;
   }
 
   button {
+    /**
+     * Hamburger Button Styling
+     * - Removes default button styles
+     * - Targets SVG icon for size and color customization
+     */
     background: none;
     border: none;
 

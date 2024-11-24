@@ -1,42 +1,115 @@
 @use "../utilities" as util;
 
 #search-pkmn {
-  max-height: 100vh;
-
   display: flex;
   flex-direction: column;
+  gap: util.$font-xl; // Spacing between elements
+  overflow-x: hidden; // Prevent horizontal scroll
 
-  overflow-y: hidden;
-  overflow-x: hidden;
+  /**
+   * Header Styling
+   * - Centers the text and applies bold styling
+   * - Adds bottom margin for spacing
+   */
+  header {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: util.$font-lg;
+  }
 
-  #contr-panel {
+  /**
+   * Control Panel Section
+   * - Organizes input fields, buttons, and dropdowns
+   * - Responsive layout switches between column (mobile) and row (medium screens)
+   */
+  #control-panel {
     display: flex;
+    flex-direction: column;
+    gap: util.$font-xs; // Spacing between elements
     width: 100%;
 
-    .search-input-group {
-      width: 100%;
-      flex: 1;
+    @include util.breakpoint(medium) {
+      flex-direction: row; // Horizontal layout on medium screens
+      align-items: center;
+      justify-content: space-between; // Spread items across the panel
     }
 
-    #search-pokemon {
-      width: 100%;
-      padding: 1rem;
-      border-radius: 14px;
+    /**
+     * Input, Select, and Button Styling
+     * - Transparent background with a gray border for a clean design
+     * - Responsive padding for better usability across devices
+     * - Hover effects for interactive feedback
+     */
+    input,
+    select,
+    button {
+      background-color: transparent;
+      color: util.$pb-gray;
+      padding: util.$font-base;
+      border: 1px solid util.$pb-gray;
+      border-radius: 8px; // Rounded corners
+      width: 100%; // Full width on smaller screens
+      box-sizing: border-box;
+
+      @include util.breakpoint(medium) {
+        padding: util.$font-sm;
+        width: auto; // Shrinks to fit content on larger screens
+      }
+
+      @include util.breakpoint(small) {
+        padding: util.$font-xs;
+      }
+
+      &:hover {
+        background-color: util.$pb-gray;
+        color: util.$pb-darkblue; // Inverts colors on hover
+      }
+    }
+
+    /**
+     * Input Field Spacing
+     * - Adds margin between input fields on mobile
+     */
+    input {
+      margin-bottom: util.$font-xs;
+
+      @include util.breakpoint(medium) {
+        margin-bottom: 0; // Removes margin for horizontal layout
+      }
+    }
+
+    /**
+     * Page Button Group Styling
+     * - Groups pagination buttons with spacing
+     * - Stacks buttons vertically on smaller screens
+     */
+    .page-btn-group {
+      display: flex;
+      gap: util.$font-xs;
+
+      @include util.breakpoint(small) {
+        flex-direction: column; // Vertical layout for small screens
+      }
     }
   }
 
+  /**
+   * Pokémon Container
+   * - Displays Pokémon cards in a responsive grid layout
+   * - Adjusts the number of columns based on screen size
+   */
   #pkmn-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
+    gap: util.$font-base; // Spacing between grid items
 
-  pokemon-card {
-    width: 30%;
-    flex: 1;
-  }
+    grid-template-columns: repeat(1, 1fr); // Single column layout for mobile
 
-  .pkmn-card {
-    width: 100%;
-    border-radius: 12px;
+    @include util.breakpoint(medium) {
+      grid-template-columns: repeat(2, 1fr); // Two columns for medium screens
+    }
+
+    @include util.breakpoint(large) {
+      grid-template-columns: repeat(4, 1fr); // Four columns for large screens
+    }
   }
 }

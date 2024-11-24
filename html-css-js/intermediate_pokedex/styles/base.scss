@@ -3,38 +3,25 @@
    Base Styles Section
    ========================================================================== */
 
-/**  
-* Universal Reset
-*
-* - Sets margin and padding to '0'
-*  to maintain consistent spacing across different browsers.
-*
-* - Sets box-sizing to 'border-box'
-* to include padding and border within an element's total width & height.
-*
-* This resets helps to create a predictable and uniform starting point
-* for styles
-*/
-
+/**
+ * Universal Reset
+ *
+ * - Sets margin and padding to '0' to remove browser default styles
+ * - Applies 'box-sizing: border-box' to include padding and border in element size
+ * - Adds a smooth transition effect for all properties
+ * - Adjusts base font size responsively for better readability
+ */
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  // Smooth transition for all properties
   @include util.transition(all, 0.4s, ease);
-}
 
-html {
-  height: 100%;
-  scroll-behavior: smooth;
-}
-
-body {
-  background: util.$body-bg;
-  color: util.$body-fg;
-
-  font-family: "Mulish", serif;
+  // Responsive font size adjustments
   font-size: 10px;
 
   @include util.breakpoint(medium) {
@@ -46,28 +33,84 @@ body {
   }
 }
 
-main {
-  height: 100vh;
+/**
+ * HTML Element Styles
+ *
+ * - Ensures 100% height for consistent layout structure
+ * - Enables smooth scrolling for better user experience
+ */
+html {
+  height: 100%;
+  scroll-behavior: smooth;
 }
 
+/**
+ * Body Styles
+ *
+ * - Sets the background and foreground colors using utility variables
+ * - Defines "Mulish" as base font family
+ */
+body {
+  background: util.$body-bg; // Dark background
+  color: util.$body-fg; // Light foreground
+  font-family: "Mulish", serif;
+}
+
+/**
+ * Section Styles
+ *
+ * - Adds consistent padding for spacing
+ * - Applies a unique background color to the first section
+ */
 section {
   padding: 6rem;
 }
 
 section:first-child {
-  background: util.$pb-brightred;
+  background: util.$pb-brightred; // Red background for emphasis
 }
 
+/**
+ * Heading Styles
+ *
+ * - Defines responsive font sizes for headings using utility variables
+ * - Ensures bold font weight for all headings
+ */
 h1 {
-  font-size: util.$font-4xl;
-  font-weight: util.$font-weight-bold;
+  font-size: util.$font-4xl; // Largest heading size
 }
 
 h2 {
-  font-size: util.$font-3xl;
-  font-weight: util.$font-weight-bold;
+  font-size: util.$font-3xl; // Medium heading size
 }
 
+h3 {
+  font-size: util.$font-xl; // Smallest heading size
+}
+
+h1,
+h2,
+h3 {
+  font-weight: util.$font-weight-bold; // Bold weight for emphasis
+}
+
+/**
+ * Paragraph Styles
+ *
+ * - Sets a base font size for readable paragraphs
+ */
 p {
   font-size: util.$font-base;
+}
+
+/**
+ * Small Styles
+ *
+ * - Sets base styling for small such a font size, color, and reduced
+ * opacity
+ */
+small {
+  font-size: util.$font-sm;
+  color: util.$body-fg;
+  opacity: 0.8;
 }
